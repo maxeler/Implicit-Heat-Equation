@@ -1,0 +1,688 @@
+Wed 12:30: ########################################## 
+Wed 12:30: Compiling.
+Wed 12:30: ########################################## 
+
+Wed 12:30: MaxCompiler version: 2014.2.
+Wed 12:30: Build Simulation run rule for ImplicitHeatEquation start time: Wed May 27 12:30:18 BST 2015.
+Wed 12:30: Project location: /home/carmen/workspace-AppLibrary/ImplicitHeatEquation.
+Wed 12:30: Detailed build log: /home/carmen/workspace-AppLibrary/ImplicitHeatEquation/RunRules/Simulation/build.log.
+
+Wed 12:30: Compiling Engine Code.
+Wed 12:30: Engine building skipped (no changes on .max files).
+Wed 12:30: Compiling CPU Code.
+Wed 12:30: Run CPU project make files updating
+Wed 12:30: Executing command:
+Wed 12:30: java -jar /network-raid/opt/maxcompiler-2014.2/lib/MaxIDE/projectAdmin.jar -u /home/carmen/workspace-AppLibrary/ImplicitHeatEquation Simulation 
+Wed 12:30: Command output:
+
+Wed 12:30: MaxCompiler Project Admin Tool Version 2014.2
+Wed 12:30:  Copyright Maxeler Technologies 2010 - 2014. All rights reserved.
+Wed 12:30: Handler version 2
+Wed 12:30: Updating RunRule dependent Makefiles for RunRule 'Simulation'
+Wed 12:30: 	Updating: Simulation
+Wed 12:30: Found makefiles: 1
+Wed 12:30: 	Updated: Simulation
+Wed 12:30: Run CPU make.
+Wed 12:30: make RUNRULE=Simulation 
+Wed 12:30: Command output:
+Wed 12:30: make -f Makefile.rules build
+Wed 12:30: make[1]: Entering directory `/home/carmen/workspace-AppLibrary/ImplicitHeatEquation/CPUCode'
+Wed 12:30: set -e; rm -f ../RunRules/Simulation/objects/c/heat_equation.d ;                                                             \
+Wed 12:30: 	  cc -M -std=gnu99 -g -O3 -Wall -Wextra -I../RunRules/Simulation/include  -I '/network-raid/opt/maxcompiler-2014.2/include/slic'   -I '/network-raid/opt/maxgenfd-2014.2/include' -Wno-error heat_equation.c > ../RunRules/Simulation/objects/c/heat_equation.d.$$ ;                                 \
+Wed 12:30:       sed 's,\(heat_equation\)\.o[ :]*,../RunRules/Simulation/objects/c/\1.o ../RunRules/Simulation/objects/c/heat_equation.d : ,g' < ../RunRules/Simulation/objects/c/heat_equation.d.$$ > ../RunRules/Simulation/objects/c/heat_equation.d; \
+Wed 12:30:       rm -f ../RunRules/Simulation/objects/c/heat_equation.d.$$
+Wed 12:30: make[1]: Leaving directory `/home/carmen/workspace-AppLibrary/ImplicitHeatEquation/CPUCode'
+Wed 12:30: make[1]: Entering directory `/home/carmen/workspace-AppLibrary/ImplicitHeatEquation/CPUCode'
+Wed 12:30: cc -std=gnu99 -g -O3 -Wall -Wextra -I../RunRules/Simulation/include  -I '/network-raid/opt/maxcompiler-2014.2/include/slic'   -I '/network-raid/opt/maxgenfd-2014.2/include' -c heat_equation.c -o ../RunRules/Simulation/objects/c/heat_equation.o
+Wed 12:30: heat_equation.c: In function 'main':
+Wed 12:30: heat_equation.c:304: warning: unused variable 'index'
+Wed 12:30: cc -std=gnu99 -g -O3 -Wall -Wextra -I../RunRules/Simulation/include  -I '/network-raid/opt/maxcompiler-2014.2/include/slic'   -I '/network-raid/opt/maxgenfd-2014.2/include' -o ../RunRules/Simulation/binaries/ImplicitHeatEquation ../RunRules/Simulation/objects/maxfiles/slic_ImplicitHeatEquation.o ../RunRules/Simulation/objects/maxfiles/maxgenfd_ImplicitHeatEquation.o ../RunRules/Simulation/objects/c/cpu_compute.o ../RunRules/Simulation/objects/c/dfe_compute.o ../RunRules/Simulation/objects/c/heat_equation.o ../RunRules/Simulation/objects/c/memory.o -g -O3  -L '/network-raid/opt/maxcompiler-2014.2/lib' -lslic -L '/network-raid/opt/maxeleros-2014.2/maxeleros/lib' -lmaxeleros -lpthread -lm -lrt   -L '/network-raid/opt/maxgenfd-2014.2/lib' -lmaxlibfd -L '/network-raid/opt/maxcompiler-2014.2/lib' -lslic -L '/network-raid/opt/maxeleros-2014.2/maxeleros/lib' -lmaxeleros -lstdc++ -lpthread -lm -lrt
+Wed 12:30: make[1]: Leaving directory `/home/carmen/workspace-AppLibrary/ImplicitHeatEquation/CPUCode'
+Wed 12:30: Build completed: Wed May 27 12:30:19 BST 2015
+
+
+Wed 12:30: ########################################## 
+Wed 12:30: Running
+Wed 12:30: ########################################## 
+Wed 12:30: Executing command:
+Wed 12:30: '/home/carmen/workspace-AppLibrary/ImplicitHeatEquation/RunRules/Simulation/binaries/ImplicitHeatEquation' 'parmfile' 
+Wed 12:30: Command output:
+Wed 12:30: MaxGenFD simulation run status
+Wed 12:30: ==============================
+Wed 12:30: 	Version: 2014.2
+Wed 12:30: 	Data flow engine: VECTIS
+Wed 12:30: 	Device topology: [X 0 X]
+Wed 12:30: 	Performance: 1 pipe @ 150 MHz
+Wed 12:30: 	Computation type: fixed-point
+Wed 12:30: 	Problem size: 96 x 96 x 96 (f x m x s)
+Wed 12:30: 	Number of blocks: 1 x 1 (f x m)
+Wed 12:30: 	Block size: 192 x 120 (f x m)
+Wed 12:30: 	Tile size: 12 x 8 (f x m)
+Wed 12:30: 	Wavefield tracking support: no
+Wed 12:30: 	Wavefield tracking enabled: no
+Wed 12:30: 	IDFE swap support: no
+Wed 12:30: 	MaxRing swap support: no
+Wed 12:30: 	PCIe swap support: no
+Wed 12:30: 	ECC enabled: no
+Wed 12:30: 	Global parameters:
+Wed 12:30: 		MAX_DEVICES = 8
+Wed 12:33: Implicit Heat Equation - Configuration
+Wed 12:33: ======================================
+Wed 12:33: 	 Dimensions: 96 x 96 x 96
+Wed 12:33: 	 Number of iterations: 10
+Wed 12:33: 	 Number of substeps:   30
+Wed 12:33: 	 dt: 0.1
+Wed 12:33: 	 Using default input configurations
+Wed 12:33: 	 Using default alpha value : 1.77
+Wed 12:33: Computing on the CPU...dt = 0.1
+Wed 12:33: 0 of 30
+Wed 12:33: out = 0
+Wed 12:33: 1 of 30
+Wed 12:33: out = 0
+Wed 12:33: 2 of 30
+Wed 12:33: out = 0
+Wed 12:33: 3 of 30
+Wed 12:33: out = 0
+Wed 12:33: 4 of 30
+Wed 12:33: out = 0
+Wed 12:33: 5 of 30
+Wed 12:33: out = 0
+Wed 12:33: 6 of 30
+Wed 12:33: out = 0
+Wed 12:33: 7 of 30
+Wed 12:33: out = 0
+Wed 12:33: 8 of 30
+Wed 12:33: out = 0
+Wed 12:33: 9 of 30
+Wed 12:33: out = 0
+Wed 12:33: 10 of 30
+Wed 12:33: out = 0
+Wed 12:33: 11 of 30
+Wed 12:33: out = 0
+Wed 12:33: 12 of 30
+Wed 12:33: out = 0
+Wed 12:33: 13 of 30
+Wed 12:33: out = 0
+Wed 12:33: 14 of 30
+Wed 12:33: out = 0
+Wed 12:33: 15 of 30
+Wed 12:33: out = 0
+Wed 12:33: 16 of 30
+Wed 12:33: out = 0
+Wed 12:33: 17 of 30
+Wed 12:33: out = 0
+Wed 12:33: 18 of 30
+Wed 12:33: out = 0
+Wed 12:33: 19 of 30
+Wed 12:33: out = 0
+Wed 12:33: 20 of 30
+Wed 12:33: out = 0
+Wed 12:33: 21 of 30
+Wed 12:33: out = 0
+Wed 12:33: 22 of 30
+Wed 12:33: out = 0
+Wed 12:33: 23 of 30
+Wed 12:33: out = 0
+Wed 12:33: 24 of 30
+Wed 12:33: out = 0
+Wed 12:33: 25 of 30
+Wed 12:33: out = 0
+Wed 12:33: 26 of 30
+Wed 12:33: out = 0
+Wed 12:33: 27 of 30
+Wed 12:33: out = 0
+Wed 12:33: 28 of 30
+Wed 12:33: out = 0
+Wed 12:33: 29 of 30
+Wed 12:33: out = 0
+Wed 12:33: 0 of 30
+Wed 12:33: out = 0
+Wed 12:33: 1 of 30
+Wed 12:33: out = 0
+Wed 12:33: 2 of 30
+Wed 12:33: out = 0
+Wed 12:33: 3 of 30
+Wed 12:33: out = 0
+Wed 12:33: 4 of 30
+Wed 12:33: out = 0
+Wed 12:33: 5 of 30
+Wed 12:33: out = 0
+Wed 12:33: 6 of 30
+Wed 12:33: out = 0
+Wed 12:33: 7 of 30
+Wed 12:33: out = 0
+Wed 12:33: 8 of 30
+Wed 12:33: out = 0
+Wed 12:33: 9 of 30
+Wed 12:33: out = 0
+Wed 12:33: 10 of 30
+Wed 12:33: out = 0
+Wed 12:33: 11 of 30
+Wed 12:33: out = 0
+Wed 12:33: 12 of 30
+Wed 12:33: out = 0
+Wed 12:33: 13 of 30
+Wed 12:33: out = 0
+Wed 12:33: 14 of 30
+Wed 12:33: out = 0
+Wed 12:33: 15 of 30
+Wed 12:33: out = 0
+Wed 12:33: 16 of 30
+Wed 12:33: out = 0
+Wed 12:33: 17 of 30
+Wed 12:33: out = 0
+Wed 12:33: 18 of 30
+Wed 12:33: out = 0
+Wed 12:33: 19 of 30
+Wed 12:33: out = 0
+Wed 12:33: 20 of 30
+Wed 12:33: out = 0
+Wed 12:33: 21 of 30
+Wed 12:33: out = 0
+Wed 12:33: 22 of 30
+Wed 12:33: out = 0
+Wed 12:33: 23 of 30
+Wed 12:33: out = 0
+Wed 12:33: 24 of 30
+Wed 12:33: out = 0
+Wed 12:33: 25 of 30
+Wed 12:33: out = 0
+Wed 12:33: 26 of 30
+Wed 12:33: out = 0
+Wed 12:33: 27 of 30
+Wed 12:33: out = 0
+Wed 12:33: 28 of 30
+Wed 12:33: out = 0
+Wed 12:33: 29 of 30
+Wed 12:33: out = 0
+Wed 12:33: 0 of 30
+Wed 12:33: out = 0
+Wed 12:33: 1 of 30
+Wed 12:33: out = 0
+Wed 12:33: 2 of 30
+Wed 12:33: out = 0
+Wed 12:33: 3 of 30
+Wed 12:33: out = 0
+Wed 12:33: 4 of 30
+Wed 12:33: out = 0
+Wed 12:33: 5 of 30
+Wed 12:33: out = 0
+Wed 12:33: 6 of 30
+Wed 12:33: out = 0
+Wed 12:33: 7 of 30
+Wed 12:33: out = 0
+Wed 12:33: 8 of 30
+Wed 12:33: out = 0
+Wed 12:33: 9 of 30
+Wed 12:33: out = 0
+Wed 12:33: 10 of 30
+Wed 12:33: out = 0
+Wed 12:33: 11 of 30
+Wed 12:33: out = 0
+Wed 12:33: 12 of 30
+Wed 12:33: out = 0
+Wed 12:33: 13 of 30
+Wed 12:33: out = 0
+Wed 12:33: 14 of 30
+Wed 12:33: out = 0
+Wed 12:33: 15 of 30
+Wed 12:33: out = 0
+Wed 12:33: 16 of 30
+Wed 12:33: out = 0
+Wed 12:33: 17 of 30
+Wed 12:33: out = 0
+Wed 12:33: 18 of 30
+Wed 12:33: out = 0
+Wed 12:33: 19 of 30
+Wed 12:33: out = 0
+Wed 12:33: 20 of 30
+Wed 12:33: out = 0
+Wed 12:33: 21 of 30
+Wed 12:33: out = 0
+Wed 12:33: 22 of 30
+Wed 12:33: out = 0
+Wed 12:33: 23 of 30
+Wed 12:33: out = 0
+Wed 12:33: 24 of 30
+Wed 12:33: out = 0
+Wed 12:33: 25 of 30
+Wed 12:33: out = 0
+Wed 12:33: 26 of 30
+Wed 12:33: out = 0
+Wed 12:33: 27 of 30
+Wed 12:33: out = 0
+Wed 12:33: 28 of 30
+Wed 12:33: out = 0
+Wed 12:33: 29 of 30
+Wed 12:33: out = 0
+Wed 12:33: 0 of 30
+Wed 12:33: out = 0
+Wed 12:33: 1 of 30
+Wed 12:33: out = 0
+Wed 12:33: 2 of 30
+Wed 12:33: out = 0
+Wed 12:33: 3 of 30
+Wed 12:33: out = 0
+Wed 12:33: 4 of 30
+Wed 12:33: out = 0
+Wed 12:33: 5 of 30
+Wed 12:33: out = 0
+Wed 12:33: 6 of 30
+Wed 12:33: out = 0
+Wed 12:33: 7 of 30
+Wed 12:33: out = 0
+Wed 12:33: 8 of 30
+Wed 12:33: out = 0
+Wed 12:33: 9 of 30
+Wed 12:33: out = 0
+Wed 12:33: 10 of 30
+Wed 12:33: out = 0
+Wed 12:33: 11 of 30
+Wed 12:33: out = 0
+Wed 12:33: 12 of 30
+Wed 12:33: out = 0
+Wed 12:33: 13 of 30
+Wed 12:33: out = 0
+Wed 12:33: 14 of 30
+Wed 12:33: out = 0
+Wed 12:33: 15 of 30
+Wed 12:33: out = 0
+Wed 12:33: 16 of 30
+Wed 12:33: out = 0
+Wed 12:33: 17 of 30
+Wed 12:33: out = 0
+Wed 12:33: 18 of 30
+Wed 12:33: out = 0
+Wed 12:33: 19 of 30
+Wed 12:33: out = 0
+Wed 12:33: 20 of 30
+Wed 12:33: out = 0
+Wed 12:33: 21 of 30
+Wed 12:33: out = 0
+Wed 12:33: 22 of 30
+Wed 12:33: out = 0
+Wed 12:33: 23 of 30
+Wed 12:33: out = 0
+Wed 12:33: 24 of 30
+Wed 12:33: out = 0
+Wed 12:33: 25 of 30
+Wed 12:33: out = 0
+Wed 12:33: 26 of 30
+Wed 12:33: out = 0
+Wed 12:33: 27 of 30
+Wed 12:33: out = 0
+Wed 12:33: 28 of 30
+Wed 12:33: out = 0
+Wed 12:33: 29 of 30
+Wed 12:33: out = 0
+Wed 12:33: 0 of 30
+Wed 12:33: out = 0
+Wed 12:33: 1 of 30
+Wed 12:33: out = 0
+Wed 12:33: 2 of 30
+Wed 12:33: out = 0
+Wed 12:33: 3 of 30
+Wed 12:33: out = 0
+Wed 12:33: 4 of 30
+Wed 12:33: out = 0
+Wed 12:33: 5 of 30
+Wed 12:33: out = 0
+Wed 12:33: 6 of 30
+Wed 12:33: out = 0
+Wed 12:33: 7 of 30
+Wed 12:33: out = 0
+Wed 12:33: 8 of 30
+Wed 12:33: out = 0
+Wed 12:33: 9 of 30
+Wed 12:33: out = 0
+Wed 12:33: 10 of 30
+Wed 12:33: out = 0
+Wed 12:33: 11 of 30
+Wed 12:33: out = 0
+Wed 12:33: 12 of 30
+Wed 12:33: out = 0
+Wed 12:33: 13 of 30
+Wed 12:33: out = 0
+Wed 12:33: 14 of 30
+Wed 12:33: out = 0
+Wed 12:33: 15 of 30
+Wed 12:33: out = 0
+Wed 12:33: 16 of 30
+Wed 12:33: out = 0
+Wed 12:33: 17 of 30
+Wed 12:33: out = 0
+Wed 12:33: 18 of 30
+Wed 12:33: out = 0
+Wed 12:33: 19 of 30
+Wed 12:33: out = 0
+Wed 12:33: 20 of 30
+Wed 12:33: out = 0
+Wed 12:33: 21 of 30
+Wed 12:33: out = 0
+Wed 12:33: 22 of 30
+Wed 12:33: out = 0
+Wed 12:33: 23 of 30
+Wed 12:33: out = 0
+Wed 12:33: 24 of 30
+Wed 12:33: out = 0
+Wed 12:33: 25 of 30
+Wed 12:33: out = 0
+Wed 12:33: 26 of 30
+Wed 12:33: out = 0
+Wed 12:33: 27 of 30
+Wed 12:33: out = 0
+Wed 12:33: 28 of 30
+Wed 12:33: out = 0
+Wed 12:33: 29 of 30
+Wed 12:33: out = 0
+Wed 12:33: 0 of 30
+Wed 12:33: out = 0
+Wed 12:33: 1 of 30
+Wed 12:33: out = 0
+Wed 12:33: 2 of 30
+Wed 12:33: out = 0
+Wed 12:33: 3 of 30
+Wed 12:33: out = 0
+Wed 12:33: 4 of 30
+Wed 12:33: out = 0
+Wed 12:33: 5 of 30
+Wed 12:33: out = 0
+Wed 12:33: 6 of 30
+Wed 12:33: out = 0
+Wed 12:33: 7 of 30
+Wed 12:33: out = 0
+Wed 12:33: 8 of 30
+Wed 12:33: out = 0
+Wed 12:33: 9 of 30
+Wed 12:33: out = 0
+Wed 12:33: 10 of 30
+Wed 12:33: out = 0
+Wed 12:33: 11 of 30
+Wed 12:33: out = 0
+Wed 12:33: 12 of 30
+Wed 12:33: out = 0
+Wed 12:33: 13 of 30
+Wed 12:33: out = 0
+Wed 12:33: 14 of 30
+Wed 12:33: out = 0
+Wed 12:33: 15 of 30
+Wed 12:33: out = 0
+Wed 12:33: 16 of 30
+Wed 12:33: out = 0
+Wed 12:33: 17 of 30
+Wed 12:33: out = 0
+Wed 12:33: 18 of 30
+Wed 12:33: out = 0
+Wed 12:33: 19 of 30
+Wed 12:33: out = 0
+Wed 12:33: 20 of 30
+Wed 12:33: out = 0
+Wed 12:33: 21 of 30
+Wed 12:33: out = 0
+Wed 12:33: 22 of 30
+Wed 12:33: out = 0
+Wed 12:33: 23 of 30
+Wed 12:33: out = 0
+Wed 12:33: 24 of 30
+Wed 12:33: out = 0
+Wed 12:33: 25 of 30
+Wed 12:33: out = 0
+Wed 12:33: 26 of 30
+Wed 12:33: out = 0
+Wed 12:33: 27 of 30
+Wed 12:33: out = 0
+Wed 12:33: 28 of 30
+Wed 12:33: out = 0
+Wed 12:33: 29 of 30
+Wed 12:33: out = 0
+Wed 12:33: 0 of 30
+Wed 12:33: out = 0
+Wed 12:33: 1 of 30
+Wed 12:33: out = 0
+Wed 12:33: 2 of 30
+Wed 12:33: out = 0
+Wed 12:33: 3 of 30
+Wed 12:33: out = 0
+Wed 12:33: 4 of 30
+Wed 12:33: out = 0
+Wed 12:33: 5 of 30
+Wed 12:33: out = 0
+Wed 12:33: 6 of 30
+Wed 12:33: out = 0
+Wed 12:33: 7 of 30
+Wed 12:33: out = 0
+Wed 12:33: 8 of 30
+Wed 12:33: out = 0
+Wed 12:33: 9 of 30
+Wed 12:33: out = 0
+Wed 12:33: 10 of 30
+Wed 12:33: out = 0
+Wed 12:33: 11 of 30
+Wed 12:33: out = 0
+Wed 12:33: 12 of 30
+Wed 12:33: out = 0
+Wed 12:33: 13 of 30
+Wed 12:33: out = 0
+Wed 12:33: 14 of 30
+Wed 12:33: out = 0
+Wed 12:33: 15 of 30
+Wed 12:33: out = 0
+Wed 12:33: 16 of 30
+Wed 12:33: out = 0
+Wed 12:33: 17 of 30
+Wed 12:33: out = 0
+Wed 12:33: 18 of 30
+Wed 12:33: out = 0
+Wed 12:33: 19 of 30
+Wed 12:33: out = 0
+Wed 12:33: 20 of 30
+Wed 12:33: out = 0
+Wed 12:33: 21 of 30
+Wed 12:33: out = 0
+Wed 12:33: 22 of 30
+Wed 12:33: out = 0
+Wed 12:33: 23 of 30
+Wed 12:33: out = 0
+Wed 12:33: 24 of 30
+Wed 12:33: out = 0
+Wed 12:33: 25 of 30
+Wed 12:33: out = 0
+Wed 12:33: 26 of 30
+Wed 12:33: out = 0
+Wed 12:33: 27 of 30
+Wed 12:33: out = 0
+Wed 12:33: 28 of 30
+Wed 12:33: out = 0
+Wed 12:33: 29 of 30
+Wed 12:33: out = 0
+Wed 12:33: 0 of 30
+Wed 12:33: out = 0
+Wed 12:33: 1 of 30
+Wed 12:33: out = 0
+Wed 12:33: 2 of 30
+Wed 12:33: out = 0
+Wed 12:33: 3 of 30
+Wed 12:33: out = 0
+Wed 12:33: 4 of 30
+Wed 12:33: out = 0
+Wed 12:33: 5 of 30
+Wed 12:33: out = 0
+Wed 12:33: 6 of 30
+Wed 12:33: out = 0
+Wed 12:33: 7 of 30
+Wed 12:33: out = 0
+Wed 12:33: 8 of 30
+Wed 12:33: out = 0
+Wed 12:33: 9 of 30
+Wed 12:33: out = 0
+Wed 12:33: 10 of 30
+Wed 12:33: out = 0
+Wed 12:33: 11 of 30
+Wed 12:33: out = 0
+Wed 12:33: 12 of 30
+Wed 12:33: out = 0
+Wed 12:33: 13 of 30
+Wed 12:33: out = 0
+Wed 12:33: 14 of 30
+Wed 12:33: out = 0
+Wed 12:33: 15 of 30
+Wed 12:33: out = 0
+Wed 12:33: 16 of 30
+Wed 12:33: out = 0
+Wed 12:33: 17 of 30
+Wed 12:33: out = 0
+Wed 12:33: 18 of 30
+Wed 12:33: out = 0
+Wed 12:33: 19 of 30
+Wed 12:33: out = 0
+Wed 12:33: 20 of 30
+Wed 12:33: out = 0
+Wed 12:33: 21 of 30
+Wed 12:33: out = 0
+Wed 12:33: 22 of 30
+Wed 12:33: out = 0
+Wed 12:33: 23 of 30
+Wed 12:33: out = 0
+Wed 12:33: 24 of 30
+Wed 12:33: out = 0
+Wed 12:33: 25 of 30
+Wed 12:33: out = 0
+Wed 12:33: 26 of 30
+Wed 12:33: out = 0
+Wed 12:33: 27 of 30
+Wed 12:33: out = 0
+Wed 12:33: 28 of 30
+Wed 12:33: out = 0
+Wed 12:33: 29 of 30
+Wed 12:33: out = 0
+Wed 12:33: 0 of 30
+Wed 12:33: out = 0
+Wed 12:33: 1 of 30
+Wed 12:33: out = 0
+Wed 12:33: 2 of 30
+Wed 12:33: out = 0
+Wed 12:33: 3 of 30
+Wed 12:33: out = 0
+Wed 12:33: 4 of 30
+Wed 12:33: out = 0
+Wed 12:33: 5 of 30
+Wed 12:33: out = 0
+Wed 12:33: 6 of 30
+Wed 12:33: out = 0
+Wed 12:33: 7 of 30
+Wed 12:33: out = 0
+Wed 12:33: 8 of 30
+Wed 12:33: out = 0
+Wed 12:33: 9 of 30
+Wed 12:33: out = 0
+Wed 12:33: 10 of 30
+Wed 12:33: out = 0
+Wed 12:33: 11 of 30
+Wed 12:33: out = 0
+Wed 12:33: 12 of 30
+Wed 12:33: out = 0
+Wed 12:33: 13 of 30
+Wed 12:33: out = 0
+Wed 12:33: 14 of 30
+Wed 12:33: out = 0
+Wed 12:33: 15 of 30
+Wed 12:33: out = 0
+Wed 12:33: 16 of 30
+Wed 12:33: out = 0
+Wed 12:33: 17 of 30
+Wed 12:33: out = 0
+Wed 12:33: 18 of 30
+Wed 12:33: out = 0
+Wed 12:33: 19 of 30
+Wed 12:33: out = 0
+Wed 12:33: 20 of 30
+Wed 12:33: out = 0
+Wed 12:33: 21 of 30
+Wed 12:33: out = 0
+Wed 12:33: 22 of 30
+Wed 12:33: out = 0
+Wed 12:33: 23 of 30
+Wed 12:33: out = 0
+Wed 12:33: 24 of 30
+Wed 12:33: out = 0
+Wed 12:33: 25 of 30
+Wed 12:33: out = 0
+Wed 12:33: 26 of 30
+Wed 12:33: out = 0
+Wed 12:33: 27 of 30
+Wed 12:33: out = 0
+Wed 12:33: 28 of 30
+Wed 12:33: out = 0
+Wed 12:33: 29 of 30
+Wed 12:33: out = 0
+Wed 12:33: 0 of 30
+Wed 12:33: out = 0
+Wed 12:33: 1 of 30
+Wed 12:33: out = 0
+Wed 12:33: 2 of 30
+Wed 12:33: out = 0
+Wed 12:33: 3 of 30
+Wed 12:33: out = 0
+Wed 12:33: 4 of 30
+Wed 12:33: out = 0
+Wed 12:33: 5 of 30
+Wed 12:33: out = 0
+Wed 12:33: 6 of 30
+Wed 12:33: out = 0
+Wed 12:33: 7 of 30
+Wed 12:33: out = 0
+Wed 12:33: 8 of 30
+Wed 12:33: out = 0
+Wed 12:33: 9 of 30
+Wed 12:33: out = 0
+Wed 12:33: 10 of 30
+Wed 12:33: out = 0
+Wed 12:33: 11 of 30
+Wed 12:33: out = 0
+Wed 12:33: 12 of 30
+Wed 12:33: out = 0
+Wed 12:33: 13 of 30
+Wed 12:33: out = 0
+Wed 12:33: 14 of 30
+Wed 12:33: out = 0
+Wed 12:33: 15 of 30
+Wed 12:33: out = 0
+Wed 12:33: 16 of 30
+Wed 12:33: out = 0
+Wed 12:33: 17 of 30
+Wed 12:33: out = 0
+Wed 12:33: 18 of 30
+Wed 12:33: out = 0
+Wed 12:33: 19 of 30
+Wed 12:33: out = 0
+Wed 12:33: 20 of 30
+Wed 12:33: out = 0
+Wed 12:33: 21 of 30
+Wed 12:33: out = 0
+Wed 12:33: 22 of 30
+Wed 12:33: out = 0
+Wed 12:33: 23 of 30
+Wed 12:33: out = 0
+Wed 12:33: 24 of 30
+Wed 12:33: out = 0
+Wed 12:33: 25 of 30
+Wed 12:33: out = 0
+Wed 12:33: 26 of 30
+Wed 12:33: out = 0
+Wed 12:33: 27 of 30
+Wed 12:33: out = 0
+Wed 12:33: 28 of 30
+Wed 12:33: out = 0
+Wed 12:33: 29 of 30
+Wed 12:33: out = 0
+Wed 12:33: Done.
+Wed 12:33: Computing on the DFE...
+Wed 13:05: Done.
+Wed 13:05: Total error   : 0
+Wed 13:05: Average error : 0
+Wed 13:05: Maximum error : 0
+Wed 13:05: Relative error: 0
+Wed 13:05: max value : 0.808807
+Wed 13:05: min value: 0
+Wed 13:05: ============PASS============Process terminated with exit code -1.
+Wed 13:05: Aborted

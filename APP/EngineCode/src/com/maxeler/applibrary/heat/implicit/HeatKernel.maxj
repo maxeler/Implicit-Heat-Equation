@@ -1,0 +1,114 @@
+package com.maxeler.applibrary.heat.implicit;
+
+import com.maxeler.maxgen.fd.ConvolveAxes;
+import com.maxeler.maxgen.fd.FDKernel;
+import com.maxeler.maxgen.fd.FDKernelParameters;
+import com.maxeler.maxgen.fd.FDVar;
+import com.maxeler.maxgen.fd.stencils.Stencil;
+
+public class HeatKernel extends FDKernel {
+	private final int stencilSize = 3;
+
+	private Stencil getWaveStencil() {
+		double rollOn[][] = { { 0.0, -2.0, 1.0 } };
+		double rollOff[][] = { { 1.0, -2, 0.0 } };
+		double interior[] = { 1.0, -2.0, 1.0 };
+
+		return asymmetricStencil(-1, 1, rollOn, interior, rollOff, 0);
+	}
+
+	private Stencil getSubStencil() {
+		double rollOn[][] = { { 0.0, 0.0, 1.0 } };
+		double rollOff[][] = { { 1.0, 0.0, 0.0 } };
+		double interior[] = { 1.0, 0.0, 1.0 };
+
+		return asymmetricStencil(-1, 1, rollOn, interior, rollOff, 0);
+	}
+
+	private FDVar computeSubStep1(FDVar x_k, FDVar b2, FDVar mu2, boolean isFixed) {
+		Stencil stencil_sub = getSubStencil();
+
+		FDVar conv_x_k = convolve(x_k, ConvolveAxes.XYZ, stencil_sub);
+		FDVar Rx_k = (-1.0) * mu2 * conv_x_k;
+		FDVar x_kn = b2 - Rx_k;
+
+		if(isFixed)
+			x_kn = x_kn.cast(-8, 8); // magic number
+		return x_kn;
+	}
+
+	private FDVar computeSubStep2(FDVar x_k, FDVar b2, FDVar mu2, boolean isFixed) {
+		Stencil stencil_sub = getSubStencil();
+
+		pushGuardedOpModes(8);
+
+		FDVar conv_x_k = convolve(x_k, ConvolveAxes.XYZ, stencil_sub);
+		FDVar R2x_k = convolve(conv_x_k, ConvolveAxes.XYZ, stencil_sub);
+
+		pushGuardedOpModes(0);
+		FDVar pow2_mu2 = mu2 * mu2;
+		popGuardedOpModes();
+
+		FDVar conv_b2 = convolve(b2, ConvolveAxes.XYZ, stencil_sub);
+
+		FDVar x_kn2 = b2 + mu2 * conv_b2 + pow2_mu2 * R2x_k;
+
+		popGuardedOpModes();
+		if(isFixed)
+			x_kn2 = x_kn2.cast(-8, 7);
+		return x_kn2;
+	}
+
+	public HeatKernel(FDKernelParameters parameters,
+			HeatEngineParameters engine_params) {
+		super(parameters);
+
+		/*
+		 * Use Crank-Nicolson to diffuse heat equation Use Jacobi scheme to
+		 * solve resulting equation Ax=b: decompose matrix into A = D+R where D
+		 * is the diagonal part and R the non-diagonal part. Then repeatedly
+		 * apply x(k+1)=D^(-1) (b - R \times x(k)) (1)
+		 *
+		 * With Crank-Nicolson, b is a function of the wave at time step t. We
+		 * use susbsteps to apply the Jacobi step (1) and stop after a fix
+		 * number of iterations when we take the final value as being the value
+		 * of the wave on the next time step.
+		 */
+
+		/* Parameters */
+		int n_iteration = engine_params.getNumStep();
+
+		/* Stencils */
+		Stencil stencil_wave = getWaveStencil();
+		// Stencil stencil_sub = getSubStencil();
+
+		/* Earth model inputs */
+		FDVar diag = io.earthModelInput("diag", 1, 0);
+		FDVar mu = io.earthModelInput("mu", 10.0, 0);
+
+		FDVar mu2 = diag * mu;
+
+		/* Input streams */
+		FDVar x = io.waveFieldInput("x", 1.0, stencilSize / 2);
+		FDVar x_k = io
+				.waveFieldInput("x_k", 1.0, stencilSize / 2 * n_iteration);
+
+		/* Computations */
+		FDVar x_kn = x_k;
+		FDVar b = diag * (x + mu * convolve(x, ConvolveAxes.XYZ, stencil_wave));
+
+		int oddNumTimestep = n_iteration % 2;
+		int n_iteration2 = n_iteration - oddNumTimestep;
+		for (int t = 0; t < n_iteration2; t += 2) {
+			x_kn = computeSubStep2(x_kn, b, mu2, engine_params.isFixed());
+		}
+
+
+		if(oddNumTimestep == 1)
+			x_kn = computeSubStep1(x_kn, b, mu2, engine_params.isFixed());
+
+		/* Output streams */
+		io.hostOutput("receiver", x_kn);// Receiver output to host
+		io.waveFieldOutput("x_kn", x_kn);
+	}
+}

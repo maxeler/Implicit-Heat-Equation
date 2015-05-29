@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<maxCompilerManager version="2">
+<enginePart internalEngineSubproject="Implicit-Heat-Equation_EngineCode" isSrcBin="false" isUseDefaultSelected="false" outputLocation="/Implicit-Heat-Equation_EngineCode/bin" projectName="Implicit-Heat-Equation"/>
+<cpuPart internalCpuSubproject="Implicit-Heat-Equation_CPUCode"/>
+<watchedFiles/>
+</maxCompilerManager>

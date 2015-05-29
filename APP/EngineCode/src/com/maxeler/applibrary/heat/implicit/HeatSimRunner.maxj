@@ -1,0 +1,148 @@
+package com.maxeler.applibrary.heat.implicit;
+
+import java.io.IOException;
+
+import com.maxeler.maxgen.fd.FDConfig;
+import com.maxeler.maxgen.fd.FDSimManager;
+import com.maxeler.maxgen.fd.StorageType;
+
+public class HeatSimRunner {
+
+	/** Size of wave field and data in the X axis. */
+	private static final int nx = 96;
+	/** Size of wave field and data in the Y axis. */
+	private static final int ny = 96;
+	/** Size of wave field and data in the Z axis. */
+	private static final int nz = 96;
+
+	/** Delta time in seconds. */
+	private static final double dt = 0.2;
+
+	/** Total number of timesteps to simulate. */
+	private static final int numTimeSteps = (int) (0.33 / dt + 0.5);
+
+	/** File in which to save receiver data */
+	private static String outputDir = "src/heat/implicit/";
+	private static String outputFileNameBase = "output";
+
+	private static void writeToFile(double time, double[] data, FDSimManager sim) {
+		String filename = new String();
+		OutputFile outputfile = null;
+		try {
+			filename = outputDir + outputFileNameBase + time + ".dat";
+			outputfile = new OutputFile(filename, nx, ny, nz, "X", "Y", "Z");
+		} catch (IOException e) {
+			sim.logError("Error creating header file: %s (" + filename + ")", e);
+			System.exit(1);
+		}
+
+		try {
+			outputfile.writeData(data);
+			sim.logMsg("Wrote data to '%s'.", filename);
+		} catch (IOException e) {
+			sim.logError("Error writing out data: %s " + "(" + filename + ")",
+					e);
+			System.exit(1);
+		}
+	}
+
+	private static void initialize(double[] field) {
+		for (int x = 0; x < nx; ++x) {
+			for (int y = 0; y < ny; ++y) {
+				for (int z = 0; z < nz; ++z) {
+					int index = z + y * nz + x * (nz * ny);
+					field[index] = 0.0;
+
+					if ((z > 10 && z < (nz - 20)) & (y > 10 && y < (ny - 20))
+							& (x > 5 && x < (nx - 10)))
+						field[index] = 10.0;
+
+				}
+			}
+		}
+	}
+
+	private static void initializeEarthModel(double[] em) {
+		for (int x = 0; x < nx; ++x) {
+			for (int y = 0; y < ny; ++y) {
+				for (int z = 0; z < nz; ++z) {
+					int index = z + y * nz + x * (nz * ny);
+					em[index] = 1.77;
+				}
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		HeatEngineParameters params = new HeatEngineParameters(args);
+		FDConfig config = HeatConfig.config(params);
+
+		// Compressed storage types are not supported in simulatiin
+		config.setWavefieldStorageType(StorageType.fix24);
+
+		FDSimManager sim = new FDSimManager("HeatSim", config);
+		sim.setKernel(new HeatKernel(sim.makeKernelParameters(), params));
+
+		sim.build();
+
+		int kernelstep = params.getNumStep();
+		int timestepsPerFrame = 16 * kernelstep;
+
+		/** Earth model data. */
+		// double[] earthModel = DataGen.create2LayerEarthModel_vel(nx, ny, nz);
+		// DataGen.preprocessEarthModel_dvv(earthModel, nx, ny, nz,
+		// deltaDistance, deltaTime);
+
+		// double[] sponge = DataGen.createSponge(spongeWidth);
+		// sim.setMappedRom("sponge", sponge);
+		// Disable the sponge for simulation
+		// sim.setScalarInput("absorb", 0);
+
+		// Wavefield for current time step.
+		double[] x = new double[nx * ny * nz];
+		double[] x_k = new double[nx * ny * nz];
+		double[] alpha = new double[nx * ny * nz];
+
+		initialize(x);
+		initialize(x_k);
+		initializeEarthModel(alpha);
+
+		sim.setProblemSize(nx, ny, nz);
+
+		/** The time step that we are currently simulating. */
+		int timestep = 0;
+
+		sim.setScalarInput("dt", dt);
+
+		while (timestep < numTimeSteps) {
+			sim.setEarthModelInputData("alpha", alpha);
+
+			sim.setHostOutputRegion("receiver", 0, nx, 0, ny, 0, nz);
+
+			// set the wave fields
+			sim.setWaveFieldInputData("x_k", x_k);
+			sim.setWaveFieldInputData("x", x);
+
+			// run the simulation
+			sim.run("timestep_" + timestep);
+
+			// dump output data to file
+			if (timestep % timestepsPerFrame == 0) {
+				double[] dataOut = sim.getHostOutputData("receiver");
+				writeToFile(dt * (timestep), dataOut, sim);
+			}
+
+			// output field for next iteration
+			x = x_k = sim.getWaveFieldOutputData("x_kn");
+
+			++timestep;
+		}
+
+		--timestep;
+		if (timestep % timestepsPerFrame != 0) {
+			double[] dataOut = sim.getHostOutputData("receiver");
+			writeToFile(dt * timestep, dataOut, sim);
+		}
+
+	}
+}
