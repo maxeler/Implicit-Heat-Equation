@@ -49,20 +49,20 @@ build: maxfiles
 maxfiles: $(MAXFILES_MAX)
 
 #
-# MaxFile: SimpleFD
+# MaxFile: ImplicitHeatEquation
 #
 
 
-BUILDNAME_MAXFILE_1:=SimpleFD
-MAXFILE_1:=SimpleFD.max
+BUILDNAME_MAXFILE_1:=ImplicitHeatEquation
+MAXFILE_1:=ImplicitHeatEquation.max
 
-include/SimpleFD.h: maxfiles/SimpleFD.h
+include/ImplicitHeatEquation.h: maxfiles/ImplicitHeatEquation.h
 	cp $< $@
 
-maxfiles/SimpleFD.max maxfiles/SimpleFD.h:
+maxfiles/ImplicitHeatEquation.max maxfiles/ImplicitHeatEquation.h:
 # Ensure that maxfiles do not get build by this Makefile when running in MaxIDE
 ifndef MAXIDE_RUN
-	test -f $@ || env  MAX_BUILDPARAMS=" DFEModel=VECTIS  target=DFE  maxFileName=SimpleFD "  ant -v -f SimpleFD.xml
+	test -f $@ || env  MAX_BUILDPARAMS=" DFEModel=VECTIS  target=DFE  maxFileName=ImplicitHeatEquation "  ant -v -f ImplicitHeatEquation.xml
 else
 	test -f $@ || ( echo 'Maxfile unavailable: $@' >/dev/stderr ; exit 1 )
 endif

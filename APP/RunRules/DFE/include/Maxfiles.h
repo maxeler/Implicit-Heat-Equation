@@ -1,4 +1,4 @@
 /** This file is maintained by MaxIDE. DO NOT MODIFY! */ 
 
 
-#include "SimpleFD.h"
+#include "ImplicitHeatEquation.h"

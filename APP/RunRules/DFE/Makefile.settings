@@ -7,8 +7,8 @@ MAXCOMPILER_QUOTE   := $(shell printf %q "$(MAXCOMPILERDIR)")
 
 RUNRULE_ARGS        := 
 RUNRULE_RUNENV      := LD_LIBRARY_PATH="$(MAXELEROSDIR)/lib:$(LD_LIBRARY_PATH)" 
-RUNRULE_MAXFILES    := SimpleFD.max  
-RUNRULE_MAXFILES_H  := SimpleFD.h 
+RUNRULE_MAXFILES    := ImplicitHeatEquation.max
+RUNRULE_MAXFILES_H  := ImplicitHeatEquation.h
 RUNRULE_CFLAGS      := 
 RUNRULE_LDFLAGS     := 
 

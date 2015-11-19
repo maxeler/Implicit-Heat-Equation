@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="ImplicitHeatEquation_EngineCode_build_script" default="all" basedir="../../EngineCode">
+<project name="Implicit-Heat-Equation_EngineCode_build_script" default="all" basedir="../../EngineCode">
     <property environment="env"/>
     <taskdef name="maxjcompiler" classname="org.eclipse.jdt.core.ant.taskdef.MaxjTask" classpath="${env.MAXCOMPILERDIR}/lib/MaxIDE/ecj.jar" onerror="ignore"/>
     <condition property="maxcompilerdirpath" value="${env.MAXCOMPILERJCP}">
@@ -26,9 +26,10 @@
         </copy>
         <maxjcompiler srcdir="src" destdir="../RunRules/DFE/dist/bin" debug="true" debuglevel="lines,vars,source" source="1.6" target="1.6" failonerror="true">
             <classpath>
+                <pathelement path="/home/djovanovic/svn-trunk/maxeda/bin"/>
+                <pathelement path="/home/djovanovic/svn-trunk/maxgen/fd/java/bin"/>
                 <pathelement path="${maxcompilerdirpath}"/>
                 <pathelement path="${env.MAXGENFDDIR}/lib/MaxGenFD.jar"/>
-                <pathelement path="${env.MAXGENFDDIR}/lib/MaxBlox.jar"/>
                 <pathelement path="${EnvClassPath}"/>
             </classpath>
         </maxjcompiler>
