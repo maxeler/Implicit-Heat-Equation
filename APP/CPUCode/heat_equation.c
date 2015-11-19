@@ -36,7 +36,7 @@ void set_options(int argc, char **argv, params* settings){
     if(!fp){
         printf("ERROR: Cannot find parameter file %s!\n", fname);
         settings->exit = 1;
-        return;s
+        return;
     }
 
     //Read parm file
