@@ -92,7 +92,7 @@ float* compute_cpu(struct params *settings){
             //swap the fields around for next iteration
             tmp = in;
             in  = out;
-            out = in;
+            out = tmp;
         }
 
 

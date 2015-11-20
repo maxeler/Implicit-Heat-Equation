@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <buildProfile>
 <common>
-<boardModel type="VECTIS"/>
+<boardModel type="MAIA"/>
 <simulation enabled="false"/>
 <enableMPCX enabled="false"/>
 </common>
 <maxFiles>
-<maxFile buildName="SimpleFD" buildOrUseExisting="build">
+<maxFile buildName="ImplicitHeatEquation" buildOrUseExisting="build">
 <runConfiguration askBeforeAutoBuild="true">
-<mainClass>simplefd.SimpleFDManager</mainClass>
+<mainClass>com.maxeler.applibrary.heat.implicit.HeatBuilder</mainClass>
 <maxHeapSize>2</maxHeapSize>
 </runConfiguration>
 <selectEngineTarget enabled="false">VECTIS</selectEngineTarget>
