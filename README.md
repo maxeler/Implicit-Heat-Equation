@@ -5,6 +5,12 @@ Implicit-Heat-Equation
 Simulate heat spreading according to implicit methods.
 
 
+Requirements
+------------
+
+This application requires MaxGenFD library.
+
+
 Usage
 -----
 

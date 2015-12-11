@@ -1,0 +1,51 @@
+#
+# Implicit-Heat-Equation
+#
+# Required variables:
+#  - MAXCOMPILER_SIM_IMAGE: image with MaxCompiler and MaxCompiler Simulator
+#  - MAXCOMPILER_DFE_IMAGE: image with MaxCompiler and Quartus II
+#
+
+stages:
+- make-sim
+- make-dfe
+
+make-sim-Implicit-Heat-Equation:
+  image: $MAXCOMPILER_SIM_IMAGE
+  script:
+  - make -C APP/CPUCode RUNRULE='Simulation'
+  stage: make-sim
+  tags:
+  - maxcompiler-sim
+
+make-Coria-Implicit-Heat-Equation:
+  image: $MAXCOMPILER_DFE_IMAGE
+  script:
+  - make -C APP/CPUCode RUNRULE='Coria'
+  stage: make-dfe
+  tags:
+  - maxcompiler-dfe
+
+make-Galava-Implicit-Heat-Equation:
+  image: $MAXCOMPILER_DFE_IMAGE
+  script:
+  - make -C APP/CPUCode RUNRULE='Galava'
+  stage: make-dfe
+  tags:
+  - maxcompiler-dfe
+
+make-Maia-Implicit-Heat-Equation:
+  image: $MAXCOMPILER_DFE_IMAGE
+  script:
+  - make -C APP/CPUCode RUNRULE='Maia'
+  stage: make-dfe
+  tags:
+  - maxcompiler-dfe
+
+make-Isca-Implicit-Heat-Equation:
+  image: $MAXCOMPILER_DFE_IMAGE
+  script:
+  - make -C APP/CPUCode RUNRULE='Isca'
+  stage: make-dfe
+  tags:
+  - maxcompiler-dfe
